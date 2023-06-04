@@ -5,9 +5,10 @@ import time
 import requests
 import winsound
 from datetime import datetime
+from PIL import ImageGrab
 
 #文件名称
-fname = "roll-0528.txt"
+fname = "roll-0604.txt"
 #文件绝对路径
 fpath = r"C:\Users\xlxdd\Desktop\PY\{}".format(fname)
 #fpath = r'C:\Users\xlxdd\Desktop\OS\sfind.c'
@@ -31,8 +32,8 @@ def listen():
             print('"txt" not found in data',end = "")
             current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             print('Current time:', current_time)
-        #时间间隔设置为十秒
-        time.sleep(10)
+        #时间间隔设置为8秒
+        time.sleep(8)
 
 
 def upload():
@@ -62,7 +63,11 @@ def upload():
     upload_button = buttons[1]
     #点击按钮
     driver.execute_script("arguments[0].click();", upload_button)
-    time.sleep(3)
+    time.sleep(1)
+    # 截取整个屏幕
+    image = ImageGrab.grab()
+    # 保存截图为文件
+    image.save("screenshot.png")
     driver.close()
 
 if __name__ == '__main__':
